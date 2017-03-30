@@ -9,9 +9,9 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Hieu Nguyen"]
   spec.email         = ["hieuk09@gmail.com"]
 
-  spec.summary       = %q{TODO: Write a short summary, because Rubygems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.summary       = %q{An authentication client for all TINYpulse apps}
+  spec.description   = %q{This is an authentication client for all TINYpulse apps which use single sign on.}
+  spec.homepage      = "https://github.com/TINYhr/tiny-authentication"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
