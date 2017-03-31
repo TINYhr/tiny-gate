@@ -1,17 +1,17 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'tiny/authentication/version'
+require 'tiny_gate/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "tiny-authentication"
-  spec.version       = Tiny::Authentication::VERSION
+  spec.name          = "tiny-gate"
+  spec.version       = TinyGate::VERSION
   spec.authors       = ["Hieu Nguyen"]
   spec.email         = ["hieuk09@gmail.com"]
 
   spec.summary       = %q{An authentication client for all TINYpulse apps}
   spec.description   = %q{This is an authentication client for all TINYpulse apps which use single sign on.}
-  spec.homepage      = "https://github.com/TINYhr/tiny-authentication"
+  spec.homepage      = "https://github.com/TINYhr/tiny-gate"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
