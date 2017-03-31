@@ -9,6 +9,7 @@ group :test do
   gem 'vcr'
   gem 'webmock'
   gem 'multi_json'
+  gem 'byebug'
 end
 
 gemspec

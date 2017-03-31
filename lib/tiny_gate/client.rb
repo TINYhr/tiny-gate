@@ -57,6 +57,5 @@ module TinyGate
     def auth_base_url
       "#{root_url}/auth/sessions"
     end
-
   end
 end

@@ -34,7 +34,7 @@ describe TinyGate::Client do
           result = client.validate(payload)
           expect(result).to be_success
           expect(result.global_user.email).to eq email
-          expect(result.global_user.token).to be_present
+          expect(result.global_user.token).not_to be_nil
         end
       end
     end
@@ -92,7 +92,7 @@ describe TinyGate::Client do
         VCR.use_cassette('fetch user successfully if token is valid') do
           response = client.fetch_user(token, user_id)
           expect(response).to be_success
-          expect(response.global_user).to be_present
+          expect(response.global_user).not_to be_nil
         end
       end
     end
