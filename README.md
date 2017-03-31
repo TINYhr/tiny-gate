@@ -26,6 +26,68 @@ $ gem install tiny-gate
 ## Usage
 
 
+### Configuration
+
+```ruby
+require 'tiny_gate'
+
+TinyGate::Client.configurate do |config|
+  config.app_id = ENV['APP_ID']
+  config.root_url = ENV['AUTHENTICATION_ROOT_URL']
+end
+```
+
+### Initialize
+
+```ruby
+require 'tiny_gate'
+
+client = TinyGate::Client.new
+# or
+client = TinyGate::Client.new(ENV['AUTHENTICATION_ROOT_URL'], ENV['APP_ID'])
+```
+
+### Get login and logout url
+
+```ruby
+client.login_url
+client.logout
+```
+
+### Validate a validation ticket
+
+```ruby
+result = client.validate(ticket: ticket)
+
+if result.success?
+  login(result.global_user)
+else
+  # send error message
+end
+```
+
+### Check signed in status
+
+```ruby
+client.signed_in?(token, user_id)
+```
+
+### Get current user
+
+```ruby
+result = client.fetch_user(token, user_id)
+
+if result.success?
+  user = result.global_user
+  puts user.email
+  puts user.id
+  puts user.token
+  puts user.active_permissions
+else
+  # send error message
+end
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.

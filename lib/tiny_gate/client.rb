@@ -7,9 +7,9 @@ module TinyGate
     extend Dry::Configurable
 
     setting :root_url, ENV['AUTHENTICATION_ROOT_URL']
-    setting :talent_app_id, ENV['TALENT_APP_ID']
+    setting :app_id, ENV['APP_ID']
 
-    def initialize(root_url = self.class.config.root_url, app_id = self.class.config.talent_app_id)
+    def initialize(root_url = self.class.config.root_url, app_id = self.class.config.app_id)
       @root_url = root_url
       @app_id = app_id
     end
