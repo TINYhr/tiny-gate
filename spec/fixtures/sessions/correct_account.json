@@ -1,0 +1,164 @@
+{
+  "http_interactions": [{
+    "request": {
+      "method": "post",
+      "uri": "http://auth.lvh.me:3002/api/auth/login",
+      "body": {
+        "encoding": "UTF-8",
+        "string": "{\"email\":\"manager_integrate@tinypulse.com\",\"password\":\"password\",\"app_id\":4}"
+      },
+      "headers": {
+        "Connection": ["close"],
+        "Content-Type": ["application/json; charset=UTF-8"],
+        "User-Agent": ["http.rb/2.2.1"]
+      }
+    },
+    "response": {
+      "status": {
+        "code": 200,
+        "message": "OK"
+      },
+      "headers": {
+        "X-Frame-Options": ["SAMEORIGIN"],
+        "X-Xss-Protection": ["1; mode=block"],
+        "X-Content-Type-Options": ["nosniff"],
+        "Content-Type": ["application/json; charset=utf-8"],
+        "Vary": ["Accept-Encoding"],
+        "Etag": ["W/\"4f960103770b3b394014db84f8613ab6\""],
+        "Cache-Control": ["max-age=0, private, must-revalidate"],
+        "Set-Cookie": ["ahoy_track=true; path=/", "ahoy_visit=71f771b7-1ad0-4f10-be35-ff3216b8a0f3; path=/; expires=Tue, 14 Mar 2017 11:31:05 -0000", "ahoy_visitor=35893ced-372c-4d9a-af1f-f10c818df447; path=/; expires=Thu, 14 Mar 2019 07:31:05 -0000"],
+        "X-Request-Id": ["5e20b260-af79-424a-baff-a3d360d180a4"],
+        "X-Runtime": ["4.782232"],
+        "Connection": ["close"],
+        "Server": ["thin"]
+      },
+      "body": {
+        "encoding": "UTF-8",
+        "string": "{\"token\":\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwYXlsb2FkIjp7InVzZXJfaWQiOjc0Nzc0LCJvcmdhbml6YXRpb25faWQiOjMzODk1fSwiZXhwIjoxNDg5NTYzMDY2LCJpYXQiOjE0ODk0NzY2NjYsImp0aSI6ImUyMzcyMzM0NmQyZTBiZTk0NjVjM2U1MzQ0YTkyMmYzIn0.kmYQUWss2BJ7QnQHDqXURuV-yg7yMfnOvRmioi1Aqxs\",\"organization_id\":33895,\"user_id\":74774}"
+      },
+      "http_version": null
+    },
+    "recorded_at": "Tue, 14 Mar 2017 07:31:06 GMT"
+  }, {
+    "request": {
+      "method": "get",
+      "uri": "http://auth.lvh.me:3002/api/auth/me?app_id=4",
+      "body": {
+        "encoding": "US-ASCII",
+        "string": ""
+      },
+      "headers": {
+        "Authorization": ["Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwYXlsb2FkIjp7InVzZXJfaWQiOjc0Nzc0LCJvcmdhbml6YXRpb25faWQiOjMzODk1fSwiZXhwIjoxNDg5NTYzMDY2LCJpYXQiOjE0ODk0NzY2NjYsImp0aSI6ImUyMzcyMzM0NmQyZTBiZTk0NjVjM2U1MzQ0YTkyMmYzIn0.kmYQUWss2BJ7QnQHDqXURuV-yg7yMfnOvRmioi1Aqxs"],
+        "Connection": ["close"],
+        "User-Agent": ["http.rb/2.2.1"]
+      }
+    },
+    "response": {
+      "status": {
+        "code": 200,
+        "message": "OK"
+      },
+      "headers": {
+        "X-Frame-Options": ["SAMEORIGIN"],
+        "X-Xss-Protection": ["1; mode=block"],
+        "X-Content-Type-Options": ["nosniff"],
+        "Content-Type": ["application/json; charset=utf-8"],
+        "Vary": ["Accept-Encoding"],
+        "Etag": ["W/\"49eaa7f1499fcf0dfa60e4317c21adac\""],
+        "Cache-Control": ["max-age=0, private, must-revalidate"],
+        "Set-Cookie": ["ahoy_track=true; path=/", "ahoy_visit=72124968-41c6-4e43-ba4a-9e9a94f96778; path=/; expires=Tue, 14 Mar 2017 11:31:07 -0000", "ahoy_visitor=11ad355d-5d90-49c8-b48f-f9eec85631f6; path=/; expires=Thu, 14 Mar 2019 07:31:07 -0000"],
+        "X-Request-Id": ["961d220c-2daa-4276-a3e8-db12f9087345"],
+        "X-Runtime": ["2.431876"],
+        "Connection": ["close"],
+        "Server": ["thin"]
+      },
+      "body": {
+        "encoding": "UTF-8",
+        "string": "{\"id\":74774,\"email\":\"manager_integrate@tinypulse.com\",\"first_name\":\"Manager\",\"last_name\":\"Rau\",\"active_permissions\":[{\"id\":78703,\"app_id\":4,\"user_id\":74774,\"role_id\":17,\"role_name\":\"manager\",\"organization_id\":33895,\"organization_name\":\"Integrate Test Org\"}]}"
+      },
+      "http_version": null
+    },
+    "recorded_at": "Tue, 14 Mar 2017 07:31:09 GMT"
+  }, {
+    "request": {
+      "method": "get",
+      "uri": "http://auth.lvh.me:3002/api/1.0/organizations/33895.json",
+      "body": {
+        "encoding": "US-ASCII",
+        "string": ""
+      },
+      "headers": {
+        "Accept": ["application/json"],
+        "Content-Type": ["application/x-www-form-urlencoded"],
+        "Authorization": ["token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2FwcC50aW55cHVsc2UuY29tIiwiaWF0IjoxNDg4NDQxOTYxLCJqdGkiOiI5MGFlMzg0NzI1MzQ5N2RlY2U2NDg4ZjI4ODZjY2JjOCIsInN1YiI6IlVNIEFQSSBhY2Nlc3MgdG9rZW4iLCJhdWQiOiJJbnRlZ3JhdGUifQ.-MKiE1EfLQ0Qm_bB2AtdwLmoUhLGKPeJ7L6IfzKFTbM"]
+      }
+    },
+    "response": {
+      "status": {
+        "code": 200,
+        "message": "OK"
+      },
+      "headers": {
+        "X-Frame-Options": ["SAMEORIGIN"],
+        "X-Xss-Protection": ["1; mode=block"],
+        "X-Content-Type-Options": ["nosniff"],
+        "Content-Type": ["application/json; charset=utf-8"],
+        "Vary": ["Accept-Encoding"],
+        "Etag": ["W/\"d350b2e61f0709a5d99f2c8c26eadba8\""],
+        "Cache-Control": ["max-age=0, private, must-revalidate"],
+        "Set-Cookie": ["ahoy_track=true; path=/", "ahoy_visit=e3a9cb3c-1901-4ab0-8b64-766db7bf9247; path=/; expires=Tue, 14 Mar 2017 11:31:09 -0000", "ahoy_visitor=44c0951e-6021-4ec4-86bd-0f887a74c5c3; path=/; expires=Thu, 14 Mar 2019 07:31:09 -0000"],
+        "X-Request-Id": ["1dbae26f-2a8a-4e51-a0f9-9e081bda0cb8"],
+        "X-Runtime": ["0.374069"],
+        "Connection": ["close"],
+        "Server": ["thin"]
+      },
+      "body": {
+        "encoding": "ASCII-8BIT",
+        "string": "{\"id\":33895,\"name\":\"Integrate Test Org\",\"time_zone\":\"(GMT+00:00) UTC\",\"signed_up_at\":\"2017-02-13T08:47:38Z\",\"active\":true}"
+      },
+      "http_version": null
+    },
+    "recorded_at": "Tue, 14 Mar 2017 07:31:09 GMT"
+  }, {
+    "request": {
+      "method": "get",
+      "uri": "http://auth.lvh.me:3002/api/1.0/organizations/33895/employees.json?fields%5B%5D=id\u0026limit=1\u0026user_id=74774",
+      "body": {
+        "encoding": "US-ASCII",
+        "string": ""
+      },
+      "headers": {
+        "Accept": ["application/json"],
+        "Content-Type": ["application/x-www-form-urlencoded"],
+        "Authorization": ["token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2FwcC50aW55cHVsc2UuY29tIiwiaWF0IjoxNDg4NDQxOTYxLCJqdGkiOiI5MGFlMzg0NzI1MzQ5N2RlY2U2NDg4ZjI4ODZjY2JjOCIsInN1YiI6IlVNIEFQSSBhY2Nlc3MgdG9rZW4iLCJhdWQiOiJJbnRlZ3JhdGUifQ.-MKiE1EfLQ0Qm_bB2AtdwLmoUhLGKPeJ7L6IfzKFTbM"]
+      }
+    },
+    "response": {
+      "status": {
+        "code": 200,
+        "message": "OK"
+      },
+      "headers": {
+        "X-Frame-Options": ["SAMEORIGIN"],
+        "X-Xss-Protection": ["1; mode=block"],
+        "X-Content-Type-Options": ["nosniff"],
+        "Content-Type": ["application/json; charset=utf-8"],
+        "Vary": ["Accept-Encoding"],
+        "Etag": ["W/\"d350b2e61f0709a5d99f2c8c26eadba8\""],
+        "Cache-Control": ["max-age=0, private, must-revalidate"],
+        "Set-Cookie": ["ahoy_track=true; path=/", "ahoy_visit=e3a9cb3c-1901-4ab0-8b64-766db7bf9247; path=/; expires=Tue, 14 Mar 2017 11:31:09 -0000", "ahoy_visitor=44c0951e-6021-4ec4-86bd-0f887a74c5c3; path=/; expires=Thu, 14 Mar 2019 07:31:09 -0000"],
+        "X-Request-Id": ["1dbae26f-2a8a-4e51-a0f9-9e081bda0cb8"],
+        "X-Runtime": ["0.374069"],
+        "Connection": ["close"],
+        "Server": ["thin"]
+      },
+      "body": {
+        "encoding": "ASCII-8BIT",
+        "string": "{\"id\":33895,\"name\":\"Integrate Test Org\",\"time_zone\":\"(GMT+00:00) UTC\",\"signed_up_at\":\"2017-02-13T08:47:38Z\",\"active\":true}"
+      },
+      "http_version": null
+    },
+    "recorded_at": "Tue, 14 Mar 2017 07:31:10 GMT"
+  }],
+  "recorded_with": "VCR 3.0.3"
+}
