@@ -1,5 +1,7 @@
 require 'dry-types'
 
-module Types
-  include Dry::Types.module
+module TinyGate
+  module Types
+    include Dry::Types.module
+  end
 end

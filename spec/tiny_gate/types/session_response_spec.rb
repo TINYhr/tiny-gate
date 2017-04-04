@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Types::SessionResponse do
+describe TinyGate::Types::SessionResponse do
   describe '#success?' do
     let(:response) { double('Response', status: status, body: '{}') }
     let(:session_response) { described_class.new(response) }
