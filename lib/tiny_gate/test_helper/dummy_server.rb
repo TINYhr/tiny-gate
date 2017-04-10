@@ -60,6 +60,19 @@ module TinyGate
         end
       end
 
+      post '/auth/sessions/me' do
+        data = request.env['rack.input'].read
+        json_params = JSON.parse(data)
+        user = UserRepository.find_by_id(json_params['user_id'])
+
+        if user && user.token == json_params['token']
+          user.data.to_json
+        else
+          status 401
+          body 'Invalid token'
+        end
+      end
+
       post '/add_user' do
         UserRepository.add_user(
           id: params[:id],

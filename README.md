@@ -25,7 +25,6 @@ $ gem install tiny-gate
 
 ## Usage
 
-
 ### Configuration
 
 ```ruby
@@ -85,6 +84,61 @@ if result.success?
   puts user.active_permissions
 else
   # send error message
+end
+```
+
+## Testing with Cucumber
+
+
+### Preparation
+
+```ruby
+# Add to gemfile
+
+group :test do
+  gem 'sinatra'
+  gem 'daemons'
+end
+```
+
+### Interact using capybara & site_prism
+
+```ruby
+class SignIn < SitePrism::Page
+  set_url "/login"
+
+  element :email_field, "input.form-control[name='session[email]']"
+  element :password_field, "input.form-control[name='session[password]']"
+  element :login_button, "button.btn-success"
+end
+```
+
+### Create user & permission
+
+```ruby
+client.add_user(id: global_user_id, email: user_email, passsword: password)
+
+client.add_permission(
+  user_id: global_user_id,
+  role_id: global_role_id,
+  permission_id: global_permission_id,
+  organization_id: global_organization_id
+)
+```
+
+### Start server
+
+```ruby
+# in env.rb
+
+require 'tiny_gate/test_helper'
+
+After do |scenario|
+  TinyGate::TestHelper.stop_server
+end
+
+AfterConfiguration do
+  TinyGate::TestHelper.start_server
 end
 ```
 

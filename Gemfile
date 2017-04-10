@@ -4,7 +4,8 @@ gem 'dry-configurable'
 gem 'dry-struct'
 gem 'http'
 gem 'sinatra', require: false
-gem 'haml'
+gem 'daemons', require: false
+gem 'haml', require: false
 
 group :test do
   gem 'vcr'
