@@ -4,6 +4,8 @@ require_relative 'user'
 module TinyGate
   module Types
     class SessionResponse
+      attr_reader :body
+
       def initialize(response)
         @response = response
         @body = JSON.parse(response.body)
@@ -19,7 +21,7 @@ module TinyGate
 
       private
 
-      attr_reader :response, :body
+      attr_reader :response
     end
   end
 end
