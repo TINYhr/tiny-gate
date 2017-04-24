@@ -10,9 +10,9 @@ module TinyGate
       attribute :app_id, Types::Int
       attribute :user_id, Types::Int
       attribute :organization_id, Types::Int
-      attribute :organization_name, Types::Int
+      attribute :organization_name, Types::String
       attribute :role_id, Types::Int
-      attribute :role_name, Types::Int
+      attribute :role_name, Types::String
     end
   end
 end
