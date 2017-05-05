@@ -122,7 +122,7 @@ describe TinyGate::Client do
       it 'returns new token url' do
         VCR.use_cassette('switch org successfully') do
           new_token_url = client.switch_org(organization_id, user_id)
-          expect(new_token_url).no_to be_empty
+          expect(new_token_url).not_to be_empty
         end
       end
     end

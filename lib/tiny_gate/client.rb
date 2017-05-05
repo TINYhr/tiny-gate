@@ -1,6 +1,7 @@
 require 'dry-configurable'
 require 'http'
 require_relative 'types/session_response'
+require_relative 'types/switch_org_response'
 
 module TinyGate
   class Client
@@ -43,7 +44,7 @@ module TinyGate
 
     def switch_org(organization_id, user_id)
       response = HTTP.post(switch_org_url, json: {organization_id: organization_id, user_id: user_id})
-      Types::SessionResponse.new(response).body["url"]
+      Types::SwitchOrgResponse.new(response).new_token_url
     end
 
     private
