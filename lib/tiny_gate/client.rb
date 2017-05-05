@@ -1,6 +1,7 @@
 require 'dry-configurable'
 require 'http'
 require_relative 'types/session_response'
+require_relative 'types/switch_org_response'
 
 module TinyGate
   class Client
@@ -16,6 +17,10 @@ module TinyGate
 
     def login_url
       "#{root_url}/auth/sessions/new?app_id=#{app_id}"
+    end
+
+    def switch_org_url
+      "#{root_url}/auth/sessions/switch_org?app_id=#{app_id}"
     end
 
     def logout_url
@@ -35,6 +40,11 @@ module TinyGate
     def fetch_user(token, user_id)
       response = HTTP.post(me_url, json: {user_id: user_id, token: token})
       Types::SessionResponse.new(response)
+    end
+
+    def switch_org(organization_id, user_id)
+      response = HTTP.post(switch_org_url, json: {organization_id: organization_id, user_id: user_id})
+      Types::SwitchOrgResponse.new(response).new_token_url
     end
 
     private
