@@ -1,10 +1,8 @@
 require 'json'
-require_relative 'user'
 
 module TinyGate
   module Types
     class SwitchOrgResponse
-      attr_reader :body
 
       def initialize(response)
         @response = response
@@ -22,6 +20,7 @@ module TinyGate
       private
 
       attr_reader :response
+      attr_reader :body
     end
   end
 end
