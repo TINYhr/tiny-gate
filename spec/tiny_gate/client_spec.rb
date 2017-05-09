@@ -113,6 +113,7 @@ describe TinyGate::Client do
   describe '#switch_org' do
     let(:root_url) { 'http://app.lvh.me:3200' }
     let(:app_id) { 4 }
+    let(:token) { 'token' }
     let(:client) { described_class.new(root_url, app_id) }
 
     context 'successfully switched to new org' do
@@ -121,7 +122,7 @@ describe TinyGate::Client do
 
       it 'returns new token url' do
         VCR.use_cassette('switch org successfully') do
-          new_token_url = client.switch_org(organization_id, user_id)
+          new_token_url = client.switch_org(token, organization_id, user_id)
           expect(new_token_url).not_to be_empty
         end
       end
