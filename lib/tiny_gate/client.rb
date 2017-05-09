@@ -42,8 +42,8 @@ module TinyGate
       Types::SessionResponse.new(response)
     end
 
-    def switch_org(organization_id, user_id)
-      response = HTTP.post(switch_org_url, json: {organization_id: organization_id, user_id: user_id})
+    def switch_org(token, organization_id, user_id)
+      response = HTTP.post(switch_org_url, json: {token: token, organization_id: organization_id, user_id: user_id})
       Types::SwitchOrgResponse.new(response).new_token_url
     end
 
