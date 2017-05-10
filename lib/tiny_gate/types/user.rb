@@ -13,7 +13,7 @@ module TinyGate
       attribute :last_name, Types::String
       attribute :avatar_url, Types::String
       attribute :token, Types::String
-      attribute :current_organization_id, Types::Int
+      attribute :current_permission, Types::ActivePermission
       attribute :active_permissions, Types::Strict::Array.member(Types::ActivePermission)
 
       def data
