@@ -19,38 +19,33 @@ module TinyGate
       "#{root_url}/auth/sessions/new?app_id=#{app_id}"
     end
 
-    def switch_org_url
-      "#{root_url}/auth/sessions/switch_org?app_id=#{app_id}"
-    end
-
     def logout_url
       "#{root_url}/signout"
     end
 
     def validate(payload)
-      response = HTTP.post(validate_url, json: payload)
+      response = HTTP.post(validate_url, json: payload.merge(app_id: app_id))
       Types::SessionResponse.new(response)
     end
 
     def signed_in?(token, user_id)
-      response = HTTP.post(validate_signed_in_url, json: {user_id: user_id, token: token})
+      response = HTTP.post(validate_signed_in_url, json: {user_id: user_id, token: token, app_id: app_id})
       response.status == 200
     end
 
     def fetch_user(token, user_id)
-      response = HTTP.post(me_url, json: {user_id: user_id, token: token})
+      response = HTTP.post(me_url, json: {user_id: user_id, token: token, app_id: app_id})
       Types::SessionResponse.new(response)
     end
 
     def switch_org(token, organization_id, user_id)
-      response = HTTP.post(switch_org_url, json: {token: token, organization_id: organization_id, user_id: user_id})
+      response = HTTP.post(switch_org_url, json: {token: token, organization_id: organization_id, user_id: user_id, app_id: app_id})
       Types::SwitchOrgResponse.new(response).new_token_url
     end
 
     private
 
     attr_reader :root_url, :app_id
-
 
     def validate_url
       "#{auth_base_url}/validate"
@@ -66,6 +61,10 @@ module TinyGate
 
     def auth_base_url
       "#{root_url}/auth/sessions"
+    end
+
+    def switch_org_url
+      "#{root_url}/auth/sessions/switch_org"
     end
   end
 end

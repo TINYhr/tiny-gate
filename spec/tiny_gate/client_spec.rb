@@ -22,11 +22,11 @@ describe TinyGate::Client do
 
   describe '#validate' do
     let(:root_url) { 'http://app.lvh.me:3200' }
-    let(:app_id) { 3 }
+    let(:app_id) { 4 }
     let(:client) { described_class.new(root_url, app_id) }
 
     context 'when user is valid' do
-      let(:email) { 'hieu@tinypulse.com' }
+      let(:email) { 'dev@tinypulse.com' }
       let(:payload) { { ticket: 'ticket' } }
 
       it 'returns valid response' do
@@ -81,7 +81,7 @@ describe TinyGate::Client do
 
   describe '#fetch_user' do
     let(:root_url) { 'http://app.lvh.me:3200' }
-    let(:app_id) { 3 }
+    let(:app_id) { 4 }
     let(:client) { described_class.new(root_url, app_id) }
 
     context 'when token is valid' do
@@ -117,8 +117,8 @@ describe TinyGate::Client do
     let(:client) { described_class.new(root_url, app_id) }
 
     context 'successfully switched to new org' do
-      let(:organization_id) { 32779 }
-      let(:user_id) { 328527 }
+      let(:organization_id) { 11 }
+      let(:user_id) { 1 }
 
       it 'returns new token url' do
         VCR.use_cassette('switch org successfully') do
