@@ -11,6 +11,8 @@ end
 module TinyGate
   module TestHelper
     class DummyServer < Sinatra::Application
+      RESULT_URL = "http://app.lvh.me:31337/session/callback?validation_ticket=%{user_token}"
+
       post '/signout' do
       end
 
@@ -28,7 +30,7 @@ module TinyGate
       post '/auth/sessions' do
         user = UserRepository.find_by_email(params[:session][:email])
         if user && user.password == params[:session][:password]
-          redirect to("http://app.lvh.me:31337/session/callback?validation_ticket=#{user.token}")
+          redirect to(RESULT_URL % {user_token: user.token})
         else
           "There is no user with email #{params[:session][:email]} and password: #{params[:session][:password]}"
         end
@@ -43,7 +45,7 @@ module TinyGate
           user.data.to_json
         else
           status 401
-          body 'Invalid token'
+          body '{"errors": "Invalid Token"}'
         end
       end
 
@@ -69,16 +71,33 @@ module TinyGate
           user.data.to_json
         else
           status 401
-          body 'Invalid token'
+          body '{"errors": "Invalid Token"}'
+        end
+      end
+
+      post '/auth/sessions/switch_org' do
+        data = request.env['rack.input'].read
+        json_params = JSON.parse(data)
+        user_id = json_params['user_id']
+        organization_id = json_params['organization_id']
+        user = UserRepository.find_by_id(user_id)
+
+        if user
+          url = RESULT_URL % {user_token: user.token}
+          body ({"url" => url}.to_json)
+        else
+          status 403
+          body '{"url": ""}'
         end
       end
 
       post '/add_user' do
-        UserRepository.add_user(
+        user = UserRepository.add_user(
           id: params[:id],
           email: params[:email],
           password: params[:password]
         )
+        user.data.to_json
       end
 
       post '/add_permission' do

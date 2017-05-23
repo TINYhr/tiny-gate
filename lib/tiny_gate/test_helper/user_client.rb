@@ -10,7 +10,8 @@ module TinyGate
       end
 
       def add_user(payload)
-        HTTP.post(add_user_url, form: payload)
+        response = HTTP.post(add_user_url, form: payload)
+        Types::SessionResponse.new(response)
       end
 
       def add_permission(payload)

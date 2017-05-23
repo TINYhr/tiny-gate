@@ -6,10 +6,12 @@ describe TinyGate::TestHelper::UserClient do
     let(:url) { 'root_url' }
     let(:payload) { 'payload' }
     let(:client) { described_class.new(url) }
+    let(:response) { double('Response', body: "{}") }
 
     it 'calls add user api' do
       expect(HTTP).to receive(:post)
         .with('root_url/add_user', form: payload)
+        .and_return(response)
       client.add_user(payload)
     end
   end

@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'tiny_gate/test_helper'
 
 describe TinyGate::Client do
   describe '#login_url' do
@@ -20,50 +21,53 @@ describe TinyGate::Client do
   end
 
 
-  describe '#validate' do
-    let(:root_url) { 'http://app.lvh.me:3200' }
+  describe '#validate', integration: true do
+    let(:root_url) { 'http://localhost:31338' }
     let(:app_id) { 4 }
     let(:client) { described_class.new(root_url, app_id) }
 
     context 'when user is valid' do
       let(:email) { 'dev@tinypulse.com' }
-      let(:payload) { { ticket: 'ticket' } }
+      let(:ticket) { 'ticket' }
+
+      before do
+        test_client = TinyGate::TestHelper::UserClient.new
+        result = test_client.add_user(id: 1, email: email)
+        @token = result.global_user.token
+      end
 
       it 'returns valid response' do
-        VCR.use_cassette('validate when user is valid return valid response') do
-          result = client.validate(payload)
-          expect(result).to be_success
-          expect(result.global_user.email).to eq email
-          expect(result.global_user.token).not_to be_nil
-        end
+        result = client.validate(ticket: @token)
+        expect(result).to be_success
+        expect(result.global_user.email).to eq email
+        expect(result.global_user.token).not_to be_nil
       end
     end
 
     context 'when user is not valid' do
-      let(:payload) { { ticket: 'invalid ticket' } }
-
       it 'returns invalid response' do
-        VCR.use_cassette('validate when user is not valid return invalid response') do
-          result = client.validate(payload)
-          expect(result).not_to be_success
-        end
+        result = client.validate(ticket: 'invalid ticket')
+        expect(result).not_to be_success
       end
     end
   end
 
-  describe '#signed_in?' do
-    let(:root_url) { 'http://app.lvh.me:3200' }
+  describe '#signed_in?', integration: true do
+    let(:root_url) { 'http://localhost:31338' }
     let(:app_id) { 3 }
     let(:client) { described_class.new(root_url, app_id) }
 
     context 'when token is valid' do
-      let(:token) { 'valid' }
       let(:user_id) { 1 }
 
+      before do
+        test_client = TinyGate::TestHelper::UserClient.new
+        result = test_client.add_user(id: user_id)
+        @token = result.global_user.token
+      end
+
       it 'returns signed in' do
-        VCR.use_cassette('signed in returns true if token is valid') do
-          expect(client).to be_signed_in(token, user_id)
-        end
+        expect(client).to be_signed_in(@token, user_id)
       end
     end
 
@@ -72,28 +76,29 @@ describe TinyGate::Client do
       let(:user_id) { 2 }
 
       it 'returns not signed in' do
-        VCR.use_cassette('signed in returns false if token is invalid') do
-          expect(client).not_to be_signed_in(token, user_id)
-        end
+        expect(client).not_to be_signed_in(token, user_id)
       end
     end
   end
 
-  describe '#fetch_user' do
-    let(:root_url) { 'http://app.lvh.me:3200' }
+  describe '#fetch_user', integration: true do
+    let(:root_url) { 'http://localhost:31338' }
     let(:app_id) { 4 }
     let(:client) { described_class.new(root_url, app_id) }
 
     context 'when token is valid' do
-      let(:token) { 'valid' }
       let(:user_id) { 1 }
 
+      before do
+        test_client = TinyGate::TestHelper::UserClient.new
+        result = test_client.add_user(id: user_id)
+        @token = result.global_user.token
+      end
+
       it 'fetches user successfully' do
-        VCR.use_cassette('fetch user successfully if token is valid') do
-          response = client.fetch_user(token, user_id)
-          expect(response).to be_success
-          expect(response.global_user).not_to be_nil
-        end
+        response = client.fetch_user(@token, user_id)
+        expect(response).to be_success
+        expect(response.global_user).not_to be_nil
       end
     end
 
@@ -102,30 +107,28 @@ describe TinyGate::Client do
       let(:user_id) { 2 }
 
       it 'fetches user unsuccessfully' do
-        VCR.use_cassette('fetch user unsuccessfully if token is invalid') do
-          response = client.fetch_user(token, user_id)
-          expect(response).not_to be_success
-        end
+        response = client.fetch_user(token, user_id)
+        expect(response).not_to be_success
       end
     end
   end
 
-  describe '#switch_org' do
-    let(:root_url) { 'http://app.lvh.me:3200' }
+  describe '#switch_org', integration: true do
+    let(:root_url) { 'http://localhost:31338' }
     let(:app_id) { 4 }
-    let(:token) { 'token' }
+    let(:organization_id) { 11 }
+    let(:user_id) { 1 }
     let(:client) { described_class.new(root_url, app_id) }
 
-    context 'successfully switched to new org' do
-      let(:organization_id) { 11 }
-      let(:user_id) { 1 }
+    before do
+      test_client = TinyGate::TestHelper::UserClient.new
+      result = test_client.add_user(id: user_id)
+      @token = result.global_user.token
+    end
 
-      it 'returns new token url' do
-        VCR.use_cassette('switch org successfully') do
-          new_token_url = client.switch_org(token, organization_id, user_id)
-          expect(new_token_url).not_to be_empty
-        end
-      end
+    it 'returns new token url' do
+      new_token_url = client.switch_org(@token, organization_id, user_id)
+      expect(new_token_url).not_to be_empty
     end
   end
 end

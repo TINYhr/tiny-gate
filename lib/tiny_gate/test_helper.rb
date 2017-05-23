@@ -5,7 +5,7 @@ require_relative 'test_helper/dummy_server'
 module TinyGate
   module TestHelper
     def self.start_server
-      Daemons.call do
+      Daemons.call(multiple: true, shush: true) do
         Rack::Handler::WEBrick.run(
           TinyGate::TestHelper::DummyServer,
           Host: 'localhost',

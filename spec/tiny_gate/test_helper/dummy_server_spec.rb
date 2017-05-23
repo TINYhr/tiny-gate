@@ -86,7 +86,7 @@ describe TinyGate::TestHelper::DummyServer do
       it 'returns error' do
         post '/auth/sessions/validate', params, {'CONTENT_TYPE' => 'application/json'}
         expect(last_response.status).to eq 401
-        expect(last_response.body).to eq 'Invalid token'
+        expect(last_response.body).to eq "{\"errors\": \"Invalid Token\"}"
       end
     end
   end

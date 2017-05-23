@@ -8,7 +8,6 @@ gem 'daemons', require: false
 gem 'haml', require: false
 
 group :test do
-  gem 'vcr'
   gem 'webmock'
   gem 'multi_json'
   gem 'byebug'
