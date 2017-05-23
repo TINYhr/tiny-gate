@@ -5,7 +5,7 @@ VCR.configure do |c|
   c.cassette_library_dir = File.expand_path(File.dirname(__FILE__) + '/../fixtures/vcr')
   c.hook_into :webmock
 
-  c.default_cassette_options = { :serialize_with => :json }
+  c.default_cassette_options = { :serialize_with => :json, :match_requests_on => [:method, :uri, :body] }
 
   # For character encoding issues.
   c.before_record(:base64_response_body) do |interaction|
