@@ -29,7 +29,8 @@ module TinyGate
           token: token,
           first_name: 'First',
           last_name: 'Last',
-          active_permissions: active_permissions
+          active_permissions: active_permissions,
+          admin_id: ''
         }
       end
 
