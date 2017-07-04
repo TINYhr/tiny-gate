@@ -1,6 +1,7 @@
 require 'dry-struct'
 require_relative '../types'
 require_relative 'active_permission'
+require_relative 'organization'
 
 module TinyGate
   module Types
@@ -16,6 +17,7 @@ module TinyGate
       attribute :admin_id, Types::Int
       attribute :current_permission, Types::ActivePermission
       attribute :active_permissions, Types::Strict::Array.member(Types::ActivePermission)
+      attribute :accessible_organizations, Types::Strict::Array.member(Types::Organization)
 
       def data
         {
