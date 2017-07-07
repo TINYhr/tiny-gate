@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'tiny_gate/test_helper/user_repository'
 
 describe TinyGate::TestHelper::UserRepository do
   let(:repo) { described_class }

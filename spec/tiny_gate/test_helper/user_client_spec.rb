@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'tiny_gate/test_helper/user_client'
 
 describe TinyGate::TestHelper::UserClient do
   describe '#add_user' do
@@ -9,9 +8,7 @@ describe TinyGate::TestHelper::UserClient do
     let(:response) { double('Response', body: "{}") }
 
     it 'calls add user api' do
-      expect(HTTP).to receive(:post)
-        .with('root_url/add_user', form: payload)
-        .and_return(response)
+      expect(HTTP).to receive(:post).with('root_url/add_user', form: payload).and_return(response)
       client.add_user(payload)
     end
   end
@@ -22,8 +19,7 @@ describe TinyGate::TestHelper::UserClient do
     let(:client) { described_class.new(url) }
 
     it 'calls add permission api' do
-      expect(HTTP).to receive(:post)
-        .with('root_url/add_permission', form: payload)
+      expect(HTTP).to receive(:post).with('root_url/add_permission', form: payload)
       client.add_permission(payload)
     end
   end
@@ -33,8 +29,7 @@ describe TinyGate::TestHelper::UserClient do
     let(:client) { described_class.new(url) }
 
     it 'calls reset api' do
-      expect(HTTP).to receive(:post)
-        .with('root_url/reset')
+      expect(HTTP).to receive(:post).with('root_url/reset')
       client.reset
     end
   end

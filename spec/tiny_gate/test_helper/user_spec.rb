@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'tiny_gate/test_helper/user'
 
 describe TinyGate::TestHelper::User do
   describe '#add_permission' do
@@ -9,10 +8,11 @@ describe TinyGate::TestHelper::User do
     let(:user) { described_class.new(id, email, password) }
     let(:permission_id) { 1 }
     let(:role_id) { 2 }
+    let(:role_name) { 'admin' }
     let(:organization_id) { 3 }
 
     it 'creates new permission' do
-      permissions = user.add_permission(permission_id, role_id, organization_id)
+      permissions = user.add_permission(permission_id, role_id, role_name, organization_id)
       last_permission = permissions.first
       expect(last_permission.id).to eq permission_id
       expect(last_permission.role_id).to eq role_id
@@ -27,28 +27,33 @@ describe TinyGate::TestHelper::User do
     let(:user) { described_class.new(id, email, password) }
     let(:permission_id) { 1 }
     let(:role_id) { 2 }
+    let(:role_name) { 'admin' }
     let(:organization_id) { 3 }
-    let(:permission_data) { {
-      id: permission_id,
-      app_id: nil,
-      user_id: id,
-      role_id: role_id,
-      role_name: nil,
-      organization_id: organization_id,
-      organization_name: nil
-    } }
-    let(:data) { {
-      id: id,
-      email: email,
-      token: user.token,
-      first_name: 'First',
-      last_name: 'Last',
-      active_permissions: [permission_data]
-    } }
+    let(:permission_data) do
+      {
+        id:                permission_id,
+        app_id:            nil,
+        user_id:           id,
+        role_id:           role_id,
+        role_name:         role_name,
+        organization_id:   organization_id,
+        organization_name: nil
+      }
+    end
+    let(:data) do
+      {
+        id:                 id,
+        email:              email,
+        token:              user.token,
+        first_name:         'First',
+        last_name:          'Last',
+        active_permissions: [permission_data]
+      }
+    end
     subject { user.data }
 
     before do
-      user.add_permission(permission_id, role_id, organization_id)
+      user.add_permission(permission_id, role_id, role_name, organization_id)
     end
 
     it { is_expected.to eq data }
