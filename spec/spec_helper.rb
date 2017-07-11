@@ -7,6 +7,8 @@ require 'rack/test'
 require 'tiny_gate'
 require 'tiny_gate/test_helper'
 
+TinyGate::TestHelper.init!
+
 RSpec.configure do |config|
   config.run_all_when_everything_filtered = true
   config.filter_run :focus

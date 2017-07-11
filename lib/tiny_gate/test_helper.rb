@@ -13,12 +13,14 @@ require_relative 'test_helper/sessions_controller'
 require_relative 'test_helper/users_controller'
 require_relative 'test_helper/dummy_server'
 
-TinyGate::Client.configure do |config|
-  config.root_url = TinyGate::TestHelper::UserClient::ROOT_URL
-end
-
 module TinyGate
   module TestHelper
+    def self.init!
+      TinyGate::Client.configure do |config|
+        config.root_url = TinyGate::TestHelper::UserClient::ROOT_URL
+      end
+    end
+
     def self.run_server
       Rack::Handler::WEBrick.run(
         DummyServer,
