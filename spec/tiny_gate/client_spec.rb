@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'tiny_gate/test_helper'
 
 describe TinyGate::Client do
   describe '#login_url' do

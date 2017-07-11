@@ -1,13 +1,13 @@
 /.bundle/
 /.yardoc
-/Gemfile.lock
 /_yardoc/
 /coverage/
 /doc/
+/gems/
 /pkg/
 /spec/reports/
 /tmp/
+/Gemfile.lock
 .ruby-version
 .ruby-gemset
-Gemfile.lock
 .idea

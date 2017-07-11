@@ -29,7 +29,7 @@ module TinyGate
         end
 
         def users
-          @@users
+          @@users.tap { |u| puts "@users: #{u.inspect}" if Sinatra::Base.development? }
         end
       end
     end
