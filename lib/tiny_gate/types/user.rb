@@ -11,6 +11,7 @@ module TinyGate
       attribute :email, Types::String
       attribute :first_name, Types::String
       attribute :last_name, Types::String
+      attribute :created_at, Types::DateTime
       attribute :avatar_url, Types::String
       attribute :token, Types::String
       attribute :admin_id, Types::Int
