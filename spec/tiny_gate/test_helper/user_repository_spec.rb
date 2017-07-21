@@ -13,10 +13,12 @@ describe TinyGate::TestHelper::UserRepository do
     let(:password) { 'password' }
 
     it 'adds user' do
-      new_user = repo.add_user(id: id, email: email, password: password)
+      new_user = repo.add_user(id: id, email: email, password: password, last_name: 'Test')
       expect(new_user.id).to eq id
       expect(new_user.email).to eq email
       expect(new_user.password).to eq password
+      expect(new_user.first_name).to eq 'First'
+      expect(new_user.last_name).to eq 'Test'
       expect(repo.users.any? { |user| user == new_user }).to eq true
     end
   end

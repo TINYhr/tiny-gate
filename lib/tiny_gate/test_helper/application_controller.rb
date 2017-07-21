@@ -8,14 +8,6 @@ module TinyGate
         set :views,         File.join(__dir__, 'views')
       end
 
-      after do
-        if Sinatra::Base.development?
-          puts
-          puts "==> params: #{params.inspect}"
-          puts
-        end
-      end
-
       get '/' do
         erb :'/welcome.html'
       end
