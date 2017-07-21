@@ -6,9 +6,11 @@ module TinyGate
 
       post '/add_user' do
         user = UserRepository.add_user(
-          id: params[:id],
-          email: params[:email],
-          password: params[:password]
+          id:         params[:id],
+          email:      params[:email],
+          password:   params[:password],
+          first_name: params[:first_name],
+          last_name:  params[:last_name]
         )
         user.data.to_json
       end
@@ -19,7 +21,9 @@ module TinyGate
           params[:permission_id],
           params[:role_id],
           params[:role_name],
-          params[:organization_id]
+          params[:organization_id],
+          params[:organization_name],
+          params[:app_id]
         )
         status 200
       end

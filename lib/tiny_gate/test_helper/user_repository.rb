@@ -6,8 +6,8 @@ module TinyGate
       @@users = Set.new
 
       class << self
-        def add_user(id:, email:, password:)
-          User.new(id, email, password).tap do |user|
+        def add_user(id:, email:, password:, first_name: 'First', last_name: 'Last')
+          User.new(id, email, password, first_name, last_name).tap do |user|
             @@users << user
           end
         end
@@ -29,7 +29,7 @@ module TinyGate
         end
 
         def users
-          @@users.tap { |u| puts "@users: #{u.inspect}" if Sinatra::Base.development? }
+          @@users
         end
       end
     end
