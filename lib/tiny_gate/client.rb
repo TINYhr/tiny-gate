@@ -9,14 +9,16 @@ module TinyGate
 
     setting :root_url, ENV['AUTHENTICATION_ROOT_URL']
     setting :app_id, ENV['APP_ID']
+    setting :callback_url, ENV['CALLBACK_URL']
 
-    def initialize(root_url = self.class.config.root_url, app_id = self.class.config.app_id)
+    def initialize(root_url = self.class.config.root_url, app_id = self.class.config.app_id, callback_url = self.class.callback_url)
       @root_url = root_url
       @app_id = app_id
+      @callback_url = callback_url
     end
 
     def login_url
-      "#{root_url}/auth/sessions/new?app_id=#{app_id}"
+      "#{root_url}/auth/sessions/new?app_id=#{app_id}&callback_url=#{callback_url}"
     end
 
     def logout_url
@@ -45,7 +47,7 @@ module TinyGate
 
     private
 
-    attr_reader :root_url, :app_id
+    attr_reader :root_url, :app_id, :callback_url
 
     def validate_url
       "#{auth_base_url}/validate"
