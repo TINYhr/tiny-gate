@@ -11,7 +11,7 @@ module TinyGate
     setting :app_id, ENV['APP_ID']
     setting :callback_url, ENV['CALLBACK_URL']
 
-    def initialize(root_url = self.class.config.root_url, app_id = self.class.config.app_id, callback_url = self.class.callback_url)
+    def initialize(root_url = self.class.config.root_url, app_id = self.class.config.app_id, callback_url = self.class.config.callback_url)
       @root_url = root_url
       @app_id = app_id
       @callback_url = callback_url
