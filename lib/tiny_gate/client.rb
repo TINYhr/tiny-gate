@@ -18,7 +18,7 @@ module TinyGate
     end
 
     def login_url
-      "#{root_url}/auth/sessions/new?app_id=#{app_id}&callback_url=#{callback_url}"
+      "#{root_url}/auth/sessions/new?app_id=#{app_id}#{callback_url_params}"
     end
 
     def logout_url
@@ -48,6 +48,12 @@ module TinyGate
     private
 
     attr_reader :root_url, :app_id, :callback_url
+
+    def callback_url_params
+      if callback_url
+        "&callback_url=#{callback_url}"
+      end
+    end
 
     def validate_url
       "#{auth_base_url}/validate"
