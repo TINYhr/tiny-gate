@@ -13,9 +13,9 @@ describe TinyGate::Client do
     end
 
     context 'with callback url' do
-      let(:callback_url) { 'custom_domain.com' }
-      let(:client) { described_class.new(root_url, app_id, callback_url) }
-      it { is_expected.to eq 'root_url/auth/sessions/new?app_id=1&callback_url=custom_domain.com' }
+      let(:callback_token) { 'abxzyx' }
+      let(:client) { described_class.new(root_url, app_id, callback_token) }
+      it { is_expected.to eq 'root_url/auth/sessions/new?app_id=1&callback_token=abxzyx' }
     end
   end
 
