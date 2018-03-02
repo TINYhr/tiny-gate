@@ -100,6 +100,12 @@ describe TinyGate::Client do
       before do
         test_client = TinyGate::TestHelper::UserClient.new
         result = test_client.add_user(id: user_id)
+        test_client.add_permission(
+          user_id: user_id,
+          permission_id: 1,
+          organization_id: 1,
+          app_id: app_id
+        )
         @token = result.global_user.token
       end
 

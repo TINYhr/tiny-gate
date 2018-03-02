@@ -115,14 +115,19 @@ end
 
 ### Create user & permission
 
+User needs to have at least one permission before login. First permission will be used to determine current organization.
+
 ```ruby
 client.add_user(id: global_user_id, email: user_email, passsword: password)
 
+# First permission
 client.add_permission(
   user_id: global_user_id,
   role_id: global_role_id,
   permission_id: global_permission_id,
-  organization_id: global_organization_id
+  organization_id: global_organization_id,
+  organization_name: global_organization_name, # nil if ommitted
+  app_id: app_id # nil if omitted
 )
 ```
 
