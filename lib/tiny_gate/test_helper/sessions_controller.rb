@@ -12,7 +12,7 @@ module TinyGate
       post '/auth/sessions' do
         user = UserRepository.find_by_email(params[:session][:email])
         if user && user.password == params[:session][:password]
-          redirect to(RESULT_URL % {user_token: user.token})
+          redirect to(format(RESULT_URL, user_token: user.token))
         else
           "There is no user with email #{params[:session][:email]} and password: #{params[:session][:password]}"
         end
@@ -54,6 +54,7 @@ module TinyGate
         user = UserRepository.find_by_id(json_params['user_id'])
 
         if user && user.token == json_params['token']
+          user.sign_in
           user.data.to_json
         else
           status 401
@@ -71,7 +72,8 @@ module TinyGate
         user = UserRepository.find_by_id(user_id)
 
         if user
-          url = RESULT_URL % {user_token: user.token}
+          user.sign_in(organization_id)
+          url = format(RESULT_URL, user_token: user.token)
         else
           url = ''
           status 403

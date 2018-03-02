@@ -47,6 +47,7 @@ describe TinyGate::TestHelper::User do
         token:              user.token,
         first_name:         'First',
         last_name:          'Last',
+        current_permission: nil,
         active_permissions: [permission_data]
       }
     end
