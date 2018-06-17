@@ -12,7 +12,7 @@ module TinyGate
           first_name: params[:first_name],
           last_name:  params[:last_name]
         )
-        user.data.to_json
+        user.token
       end
 
       post '/add_permission' do

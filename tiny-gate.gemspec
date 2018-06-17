@@ -6,8 +6,8 @@ require 'tiny_gate/version'
 Gem::Specification.new do |spec|
   spec.name          = 'tiny-gate'
   spec.version       = TinyGate::VERSION
-  spec.authors       = ['Hieu Nguyen']
-  spec.email         = ['hieuk09@gmail.com']
+  spec.authors       = ['TINYpulse']
+  spec.email         = ['devops@tinypulse.com']
 
   spec.summary       = %q{An authentication client for all TINYpulse apps}
   spec.description   = %q{This is an authentication client for all TINYpulse apps which use single sign on.}
@@ -28,7 +28,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.add_dependency 'dry-configurable'
-  spec.add_dependency 'dry-struct', '< 0.3.0'
+  spec.add_dependency 'dry-struct', '>= 0.5.0'
   spec.add_dependency 'http'
   spec.add_dependency 'sinatra'
   spec.add_dependency 'daemons'

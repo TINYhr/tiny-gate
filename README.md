@@ -120,7 +120,7 @@ User needs to have at least one permission before login. First permission will b
 ```ruby
 client.add_user(id: global_user_id, email: user_email, passsword: password)
 
-# First permission
+# First permission is required
 client.add_permission(
   user_id: global_user_id,
   role_id: global_role_id,
