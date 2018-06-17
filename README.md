@@ -1,5 +1,7 @@
 # TinyGate
 
+[![Build Status](https://travis-ci.org/TINYhr/tiny-gate.svg?branch=master)](https://travis-ci.org/TINYhr/tiny-gate)
+
 This is a simple authentication client for all TINYpulse applications. This is
 the gateway of everything, hence the name :P
 
