@@ -2,7 +2,6 @@ module TinyGate
   module TestHelper
     class User
       attr_reader :id, :email, :password, :first_name, :last_name, :token
-      attr_accessor :current_organization_id
 
       def initialize(id, email, password, first_name = 'First', last_name = 'Last')
         @id          = id
@@ -12,10 +11,11 @@ module TinyGate
         @last_name   = last_name
         @token       = SecureRandom.hex
         @permissions = Set.new
+        @current_organization_id = nil
       end
 
       def sign_in(organization_id = nil)
-        self.current_organization_id = organization_id || @permissions.first.organization_id
+        @current_organization_id = organization_id
       end
 
       def add_permission(permission_id, role_id, role_name, organization_id, organization_name = nil, app_id = nil)
@@ -43,9 +43,12 @@ module TinyGate
 
       private
 
+      def current_organization_id
+        @current_organization_id || @permissions.first.organization_id
+      end
+
       def current_permission
-        permission = find_current_permission
-        permission && to_hash(permission)
+        to_hash(find_current_permission)
       end
 
       def find_current_permission

@@ -35,13 +35,19 @@ describe TinyGate::Client do
     let(:client) { described_class.new(root_url, app_id) }
 
     context 'when user is valid' do
+      let(:user_id) { 1 }
       let(:email) { 'dev@tinypulse.com' }
       let(:ticket) { 'ticket' }
 
       before do
         test_client = TinyGate::TestHelper::UserClient.new
-        result = test_client.add_user(id: 1, email: email)
-        @token = result.global_user.token
+        @token = test_client.add_user(id: user_id, email: email)
+        test_client.add_permission(
+          user_id: user_id,
+          permission_id: 1,
+          organization_id: 1,
+          app_id: app_id
+        )
       end
 
       it 'returns valid response' do
@@ -70,8 +76,7 @@ describe TinyGate::Client do
 
       before do
         test_client = TinyGate::TestHelper::UserClient.new
-        result = test_client.add_user(id: user_id)
-        @token = result.global_user.token
+        @token = test_client.add_user(id: user_id)
       end
 
       it 'returns signed in' do
@@ -99,14 +104,13 @@ describe TinyGate::Client do
 
       before do
         test_client = TinyGate::TestHelper::UserClient.new
-        result = test_client.add_user(id: user_id)
+        @token = test_client.add_user(id: user_id)
         test_client.add_permission(
           user_id: user_id,
           permission_id: 1,
           organization_id: 1,
           app_id: app_id
         )
-        @token = result.global_user.token
       end
 
       it 'fetches user successfully' do
@@ -136,8 +140,7 @@ describe TinyGate::Client do
 
     before do
       test_client = TinyGate::TestHelper::UserClient.new
-      result = test_client.add_user(id: user_id)
-      @token = result.global_user.token
+      @token = test_client.add_user(id: user_id)
     end
 
     it 'returns new token url' do

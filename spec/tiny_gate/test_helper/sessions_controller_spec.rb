@@ -44,7 +44,7 @@ describe TinyGate::TestHelper::SessionsController do
 
     context 'when user exists' do
       before do
-        @user = TinyGate::TestHelper::UserRepository.add_user(id: 1, email: email, password: password)
+        TinyGate::TestHelper::UserRepository.add_user(id: 1, email: email, password: password)
       end
 
       it 'redirects to callback url' do
@@ -65,6 +65,7 @@ describe TinyGate::TestHelper::SessionsController do
         email: email,
         password: password
       )
+      @user.add_permission(2, 3, 'super_admin', 4 ,'organization 1', 5)
     end
 
     context 'when user token is valid' do

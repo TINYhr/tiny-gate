@@ -5,18 +5,18 @@ require_relative 'active_permission'
 module TinyGate
   module Types
     class User < Dry::Struct
-      constructor_type :symbolized
+      transform_keys(&:to_sym)
 
-      attribute :id, Types::Int
+      attribute :id, Types::Integer
       attribute :email, Types::String
       attribute :first_name, Types::String
       attribute :last_name, Types::String
-      attribute :created_at, Types::DateTime
-      attribute :avatar_url, Types::String
+      attribute :created_at, Types::DateTime.meta(omittable: true)
+      attribute :avatar_url, Types::String.meta(omittable: true)
       attribute :token, Types::String
-      attribute :admin_id, Types::Int
-      attribute :current_permission, Types::ActivePermission
-      attribute :active_permissions, Types::Strict::Array.member(Types::ActivePermission)
+      attribute :admin_id, Types::Integer.meta(omittable: true)
+      attribute :current_permission, Types::ActivePermission.meta(omittable: true)
+      attribute :active_permissions, Types::Strict::Array.of(Types::ActivePermission)
 
       def data
         {
