@@ -25,8 +25,8 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'sinatra'
   spec.add_dependency 'daemons'
 
-  spec.add_development_dependency 'bundler',   '~> 1.12'
-  spec.add_development_dependency 'rake',      '~> 10.0'
+  spec.add_development_dependency 'bundler',   '>= 1.17.3'
+  spec.add_development_dependency 'rake',      '>= 12.3.3'
   spec.add_development_dependency 'rspec',     '~> 3.0'
   spec.add_development_dependency 'rack-test', '~> 0.6.3'
 end
